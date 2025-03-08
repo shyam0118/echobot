@@ -1,13 +1,17 @@
+import BlinkingDotsBG from "@/components/BlinkingDotsBG";
+
 export default function Home() {
   return (
-    <div>
-      <div className="bg-black min-h-screen w-full relative">
-        <div className="absolute inset-0 bg-[radial-gradient(#888_1px,transparent_1px)] bg-[length:24px_24px] opacity-20"></div>
-
-        <div className="relative z-10 flex items-center justify-center pt-32">
-          <h1 className="text-gray-400 text-6xl font-bold">Backgrounds</h1>
+    <BlinkingDotsBG>
+      <div className="relative overflow-hidden h-screen">
+        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 py-10 sm:py-24">
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-6xl font-bold text-neutral-200">
+              Echo Bot
+            </h1>
+          </div>
         </div>
       </div>
-    </div>
+    </BlinkingDotsBG>
   );
 }
