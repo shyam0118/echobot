@@ -1,9 +1,13 @@
 // components/BlinkingDotsBG.jsx
 'use client';
-import { useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 
-const BlinkingDotsBG = ({ children }) => {
-  const blinkingDotsRef = useRef(null);
+interface BlinkingDotsBGProps {
+  children: ReactNode;
+}
+
+const BlinkingDotsBG = ({ children }: BlinkingDotsBGProps) => {
+  const blinkingDotsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const setupBlinkingDots = () => {
@@ -40,7 +44,7 @@ const BlinkingDotsBG = ({ children }) => {
       }
     };
     
-    const animateDot = (dot) => {
+    const animateDot = (dot: HTMLDivElement) => {
       // Random blink duration between 0.5s and 2s
       const blinkDuration = Math.random() * 1500 + 500;
       

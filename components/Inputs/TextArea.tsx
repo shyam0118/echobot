@@ -5,7 +5,7 @@ import React from "react";
 interface TextAreaProps {
   id?: string;
   value: string;
-  onChange: (event: React.ChangeEvent<HTMLTemplateElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder?: string;
 }
 

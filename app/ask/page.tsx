@@ -2,7 +2,7 @@
 
 import TextArea from "@/components/Inputs/TextArea";
 import BlinkingDotsBG from "@/components/UIElements/BlinkingDotsBG";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 
 export default function Home() {
   const [sourceText, setSourceText] = useState("");
@@ -24,9 +24,9 @@ export default function Home() {
                   <TextArea
                     id="source-language"
                     value={sourceText}
-                    onChange={(e) => {
-                      setSourceText(e.target.value);
-                    }}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                        setSourceText(e.target.value);
+                      }}
                     placeholder={"Enter text"}
                   />
                   <div className="flex flex-row justify-between w-full">
