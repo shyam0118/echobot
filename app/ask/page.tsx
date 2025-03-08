@@ -1,11 +1,19 @@
 "use client";
 
+import "regenerator-runtime/runtime";
 import TextArea from "@/components/Inputs/TextArea";
+import SpeechRecognitionComponent from "@/components/SpeechRecognition/SpeechRecognition";
 import BlinkingDotsBG from "@/components/UIElements/BlinkingDotsBG";
 import { useState } from "react";
+import { Volume2 } from "lucide-react";
 
 export default function Home() {
   const [sourceText, setSourceText] = useState("");
+
+  const handleAudioPlayBack = (text: string) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(utterance);
+  };
   return (
     <BlinkingDotsBG>
       <div className="relative overflow-hidden h-screen">
@@ -25,15 +33,21 @@ export default function Home() {
                     id="source-language"
                     value={sourceText}
                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                        setSourceText(e.target.value);
-                      }}
+                      setSourceText(e.target.value);
+                    }}
                     placeholder={"Enter text"}
                   />
                   <div className="flex flex-row justify-between w-full">
-                    <span className="cursor-pointer flex space-x-2 flex-row">
-
-                    </span>
-
+                    <div className="cursor-pointer flex space-x-2 flex-row">
+                      <SpeechRecognitionComponent
+                        setSourceText={setSourceText}
+                      />
+                      <Volume2
+                        size={24}
+                        className="text-gray-400"
+                        onClick={() => handleAudioPlayBack(sourceText)}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
