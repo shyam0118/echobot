@@ -5,7 +5,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 
 interface SpeechRecognitionProps {
-  setSourceText: any;
+  setSourceText: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const SpeechRecognitionComponent = ({

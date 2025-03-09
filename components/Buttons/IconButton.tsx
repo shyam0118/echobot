@@ -1,7 +1,7 @@
 import React from "react";
 
 interface IconButtonProps {
-  Icon: any;
+  Icon: React.ElementType;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
