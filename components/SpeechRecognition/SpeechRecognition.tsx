@@ -25,7 +25,7 @@ const SpeechRecognitionComponent = ({
   };
   return (
     <div>
-      <Mic size={24} className="text-gray-400" onClick={handleVoiceRecording} />
+      <Mic size={22} className="text-gray-400" onClick={handleVoiceRecording} />
     </div>
   );
 };

@@ -10,7 +10,7 @@ const IconButton = ({ Icon, onClick }: IconButtonProps) => (
     className="cursor-pointer flex items-center space-x-2"
     onClick={onClick}
   >
-    <Icon size={24} />
+    <Icon size={22} />
   </button>
 );
 
