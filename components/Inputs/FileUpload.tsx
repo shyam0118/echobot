@@ -8,7 +8,7 @@ interface FileUploadProps {
 const FileUpload = ({ handleFileUpload }: FileUploadProps) => {
   return (
     <label htmlFor="file-upload" className="cursor-pointer">
-      <Paperclip size={22} />
+      <Paperclip className="text-gray-400" size={22} />
       <input
         id="file-upload"
         type="file"

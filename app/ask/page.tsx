@@ -7,6 +7,8 @@ import BlinkingDotsBG from "@/components/UIElements/BlinkingDotsBG";
 import { ChangeEvent, useState } from "react";
 import { Volume2 } from "lucide-react";
 import FileUpload from "@/components/Inputs/FileUpload";
+import { rtfToText } from "@/utils/rtfToText";
+import LinkPaste from "@/components/Inputs/LinkPaste";
 
 export default function Home() {
   const [sourceText, setSourceText] = useState("");
@@ -22,11 +24,16 @@ export default function Home() {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setSourceText(reader.result as string);
+        const rtfContent = reader.result as string;
+        const text = rtfToText(rtfContent);
+        setSourceText(text);
       };
       reader.readAsText(file);
     }
   };
+
+  const handleLinkPaste = () => {};
+
   return (
     <BlinkingDotsBG>
       <div className="relative overflow-hidden h-screen">
@@ -50,7 +57,7 @@ export default function Home() {
                     }}
                     placeholder={"Enter text"}
                   />
-                  <div className="flex flex-row justify-between w-full">
+                  <div className="flex flex-row justify-between w-full p-1">
                     <div className="cursor-pointer flex space-x-2 flex-row">
                       <SpeechRecognitionComponent
                         setSourceText={setSourceText}
@@ -61,6 +68,7 @@ export default function Home() {
                         onClick={() => handleAudioPlayBack(sourceText)}
                       />
                       <FileUpload handleFileUpload={handleFileUpload} />
+                      <LinkPaste handleLinkPaste={handleLinkPaste} />
                     </div>
                   </div>
                 </div>
