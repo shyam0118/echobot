@@ -70,6 +70,9 @@ export default function Home() {
                       <FileUpload handleFileUpload={handleFileUpload} />
                       <LinkPaste handleLinkPaste={handleLinkPaste} />
                     </div>
+                    <div className="text-sm text-gray-400">
+                      {sourceText?.length} / 2000
+                    </div>
                   </div>
                 </div>
               </div>
