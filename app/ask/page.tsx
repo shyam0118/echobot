@@ -4,8 +4,9 @@ import "regenerator-runtime/runtime";
 import TextArea from "@/components/Inputs/TextArea";
 import SpeechRecognitionComponent from "@/components/SpeechRecognition/SpeechRecognition";
 import BlinkingDotsBG from "@/components/UIElements/BlinkingDotsBG";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Volume2 } from "lucide-react";
+import FileUpload from "@/components/Inputs/FileUpload";
 
 export default function Home() {
   const [sourceText, setSourceText] = useState("");
@@ -13,6 +14,18 @@ export default function Home() {
   const handleAudioPlayBack = (text: string) => {
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
+  };
+
+  const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setSourceText(reader.result as string);
+      };
+      reader.readAsText(file);
+    }
   };
   return (
     <BlinkingDotsBG>
@@ -43,10 +56,11 @@ export default function Home() {
                         setSourceText={setSourceText}
                       />
                       <Volume2
-                        size={24}
+                        size={22}
                         className="text-gray-400"
                         onClick={() => handleAudioPlayBack(sourceText)}
                       />
+                      <FileUpload handleFileUpload={handleFileUpload} />
                     </div>
                   </div>
                 </div>
