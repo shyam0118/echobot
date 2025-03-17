@@ -97,7 +97,7 @@ export default function Home() {
                     placeholder="Target language"
                   />
                   <div className="flex flex-row justify-between w-full">
-                    <div className="cursor-pointer flex space-x-2 flex-row items-center">
+                    <div className="cursor-pointer flex space-x-2 flex-row items-center p-2">
                       <LanguageSelector
                         selectedLanguage={selectedLanguage}
                         setSelectedLanguage={setSelectedLanguage}
