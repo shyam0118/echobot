@@ -5,7 +5,13 @@ import TextArea from "@/components/Inputs/TextArea";
 import SpeechRecognitionComponent from "@/components/SpeechRecognition/SpeechRecognition";
 import BlinkingDotsBG from "@/components/UIElements/BlinkingDotsBG";
 import { ChangeEvent, useState } from "react";
-import { VoicemailIcon, Volume2 } from "lucide-react";
+import {
+  CopyIcon,
+  StarIcon,
+  ThumbsDown,
+  ThumbsUp,
+  Volume2,
+} from "lucide-react";
 import FileUpload from "@/components/Inputs/FileUpload";
 import { rtfToText } from "@/utils/rtfToText";
 import LinkPaste from "@/components/Inputs/LinkPaste";
@@ -24,7 +30,7 @@ export default function Home() {
   ]);
   const [selectedLanguage, setSelectedLanguage] = useState("Hindi");
 
-  const targetText = useTranslate(sourceText, "selectedLanguage");
+  const targetText = useTranslate(sourceText, selectedLanguage);
 
   const handleAudioPlayBack = (text: string) => {
     const utterance = new SpeechSynthesisUtterance(text);
@@ -45,7 +51,20 @@ export default function Home() {
     }
   };
 
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(targetText);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
+
   const handleLinkPaste = () => {};
+
+  const handleFavourite = () => {
+    setFavourite(!favourite);
+  };
 
   return (
     <BlinkingDotsBG>
@@ -103,7 +122,23 @@ export default function Home() {
                         setSelectedLanguage={setSelectedLanguage}
                         languages={languages}
                       />
-                      <Volume2 size={22} onClick={() => handleAudioPlayBack(targetText)} />
+                      <Volume2
+                        size={22}
+                        onClick={() => handleAudioPlayBack(targetText)}
+                      />
+                    </div>
+                    <div className="flex flex-row items-center space-x-2 pr-4 cursor-pointer">
+                      <CopyIcon size={22} onClick={handleCopyToClipboard} />
+                      {copied && (
+                        <span className="text-xs text-green-400">Copied!</span>
+                      )}
+                      <ThumbsUp size={22} />
+                      <ThumbsDown size={22} />
+                      <StarIcon
+                        size={22}
+                        onClick={handleFavourite}
+                        className={`${favourite && "text-yellow-500"}`}
+                      />
                     </div>
                   </div>
                 </div>
