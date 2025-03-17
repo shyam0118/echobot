@@ -22,7 +22,7 @@ export default function Home() {
   const [sourceText, setSourceText] = useState("");
   const [copied, setCopied] = useState(false);
   const [favourite, setFavourite] = useState(false);
-  const [languages, setLanguages] = useState([
+  const [languages] = useState([
     "English",
     "Hindi",
     "Odia",
