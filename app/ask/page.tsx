@@ -30,7 +30,7 @@ export default function Home() {
   ]);
   const [selectedLanguage, setSelectedLanguage] = useState("Hindi");
 
-  const targetText = useTranslate(sourceText, selectedLanguage);
+  const targetText = useTranslate({sourceText, selectedLanguage});
 
   const handleAudioPlayBack = (text: string) => {
     const utterance = new SpeechSynthesisUtterance(text);
